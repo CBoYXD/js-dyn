@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #basket {
+            position: relative;
+            width: 250px;
+            height: 450px;
+            float: right;
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        #cart {
+            width: 250px;
+            height: 400px;
+            padding: 10px;
+            background: tan;
+            margin-right: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        #sum {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+        }
+
+        input[type="button"] {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+        }
+
+        .product {
+            margin: 10px;
+        }
+
+        .product img {
+            width: 80px;
+        }
+
+        .mini {
+            width: 80px;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="basket">
+        Кошик товарів
+        <div id="cart" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+        <div id="sum">Сума: 0</div>
+        <input type="button" value="Оформити замовлення" />
+    </div>
+    <div class="product">
+        <img id="fl1" src="http://js.web-online.net.ua/fl1.jpg" draggable="true" ondragstart="drag(event)"
+            data-text="Ірис 1" data-price="30" data-count="1" />
+        <div><a href="#">Flower 1</a></div>
+        <input id="fl1_input" type="number" value="1" oninput="onInput(event)"/>
+    </div>
+    <div class="product">
+        <img id="fl2" src="http://js.web-online.net.ua/fl2.jpg" draggable="true" ondragstart="drag(event)"
+            data-text="Ірис 2" data-price="20" data-count="1"/>
+        <div><a href="#">Flower 2</a></div>
+        <input id="fl2_input" type="number" value="1" oninput="onInput(event)"/>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
