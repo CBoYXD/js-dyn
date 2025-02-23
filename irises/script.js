@@ -58,14 +58,14 @@ function drop(event) {
   if (existingItem) {
     const newCount = parseInt(existingItem.getAttribute("value")) + count;
     console.log(`New count: ${newCount}`);
-    total += parseInt(newCount) * parseInt(price);
+    total = parseInt(newCount) * parseInt(price);
     sum.innerHTML = "Сумма: $" + total;
     existingItem.innerHTML = `<strong>Кількість: ${newCount}</strong>`;
     existingItem.setAttribute("value", newCount);
     return
   }
 
-  total += parseInt(count) * parseInt(price);
+  total = parseInt(count) * parseInt(price);
   sum.innerHTML = "Сумма: $" + total;
   drop.innerHTML +=
     arrData[0] +
