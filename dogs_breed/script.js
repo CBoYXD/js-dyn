@@ -8,15 +8,14 @@ const irises = document.getElementsByClassName("iris"); // Ириси
 
 let irisesState = [];
 for (let i = 0; i < irises.length; i++) {
-   // створення масиву для відстеження irises
-   irisesState[irises[i].id] = false;
+  // створення масиву для відстеження irises
+  irisesState[irises[i].id] = false;
 }
 
 for (let i = 0; i < irises.length; i++) {
   // подія натискання миші
   irises[i].addEventListener("mousedown", go);
 }
-
 
 function go(event) {
   const flower = document.getElementById(event.target.id);
@@ -76,13 +75,21 @@ function go(event) {
     const top = parseInt(flower.style.top);
     // перевірка, чи потрапляє на поле tan квітка з координатами left, top
     if (onField(tan, left, top)) {
-      state.innerHTML =
-        flower.id + " сорт " + breed + " відпускаємо на поле tan!"; // записуємо у поле state
+      state.innerHTML = flower.id + " сорт " + breed + " відпускаємо на поле tan!";
+      if (breed == "tan") {
+        irisesState[flower.id] = true;
+      } else {
+        irisesState[flower.id] = false;
+      }
     }
     // перевірка, чи потрапляє на поле pink квітка з координатами left, top
     if (onField(pink, left, top)) {
-      state.innerHTML =
-        flower.id + " сорт " + breed + " відпускаємо на поле pink!";
+        state.innerHTML = flower.id + " сорт " + breed + " відпускаємо на поле pink!";
+        if (breed == "pink") {
+          irisesState[flower.id] = true;
+        } else {
+          irisesState[flower.id] = false;
+        }
     }
     document.onmousemove = null;
     flower.onmouseup = null;
@@ -95,11 +102,15 @@ function go(event) {
 //проверка, попадает ли на поле f цветок с координатами left, top
 function onField(field, left, top) {
   let f = getCoords(field);
-  // if (left > 5 && left < 405 && top > 5 && top < 305) {
-  //     return true;
-  //   } else
-  //   return false;
-  return true;
+  if (
+    left > f.left &&
+    left < f.left + f.width &&
+    top > f.top &&
+    top < f.top + f.height
+  ) {
+    return true;
+  }
+  return false;
 }
 
 // функция возвращает размер элемента и его координаты относительно объемлющего элемента.
@@ -112,4 +123,9 @@ function getCoords(elem) {
     top: box.top + scrollY,
     left: box.left + scrollX,
   };
+}
+
+
+function check(){
+    
 }
