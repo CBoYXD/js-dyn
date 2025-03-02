@@ -9,7 +9,7 @@ const irises = document.getElementsByClassName("iris"); // Ириси
 let irisesState = [];
 for (let i = 0; i < irises.length; i++) {
   // створення масиву для відстеження irises
-  irisesState[irises[i].id] = false;
+  irisesState[irises[i].id] = true;
 }
 
 for (let i = 0; i < irises.length; i++) {
@@ -126,6 +126,17 @@ function getCoords(elem) {
 }
 
 
-function check(){
-    
+function check() {
+  let allOnPlace = true;
+  for (let key in irisesState) {
+    if (!irisesState[key]) {
+      allOnPlace = false;
+      break;
+    }
+  }
+  if (allOnPlace) {
+    state.innerHTML = "Всі квітки на місці!";
+  } else {
+    state.innerHTML = "Не всі квітки на місці!";
+  }
 }
