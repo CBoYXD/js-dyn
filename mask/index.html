@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка імені файлу</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h2>Введіть назву зображення</h2>
+    <form id="form">
+        <input type="text" id="filename" placeholder="Введіть ім'я файлу" required>
+        <button type="submit">Перевірити</button>
+    </form>
+    <p id="message"></p>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const filename = document.getElementById("filename").value;
+            const pattern = /^[a-z]\w*\.(jpg|png|gif)$/;
+            const message = document.getElementById("message");
+            
+            if (pattern.test(filename)) {
+                message.textContent = "Ім'я файлу коректне.";
+                message.className = "success";
+            } else {
+                message.textContent = "Помилка: Ім'я файлу повинно починатися з літери, містити тільки літери, цифри або підкреслення і мати розширення .jpg, .png або .gif.";
+                message.className = "error";
+            }
+        });
+    </script>
+</body>
+</html>
