@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=	, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        img {
+            visibility: hidden;
+        }
+
+        #new_image {
+            visibility: visible;
+        }
+    </style>
+    <img src="../guess_pict/images/oneblur.jpg">
+    <img src="../guess_pict/images/twoblur.jpg">
+    <img src="../guess_pict/images/one.jpg">
+    <img src="../guess_pict/images/two.jpg">
+    <img src="../island/images/map.jpg">
+</body>
+    <script>
+        let images = document.getElementsByTagName("img");
+        let expr = /<img[^>]+src="([^"]+\.(jpg|png|gif))"[^>]*>/;
+        for (let image of images) {
+            let match = image.outerHTML.match(expr);
+            console.log(match);
+            if (match !== null) {
+                let newImg = document.createElement('img')
+                newImg.src = match[1];
+                newImg.id = "new_image";
+                document.body.appendChild(newImg);
+            }
+        }
+
+        
+    </script>
+</html>

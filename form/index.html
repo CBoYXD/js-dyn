@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="orderform" action="order.html" method="GET" onsubmit="return verify(this)">
+        Прізвище <input type="text" name="lname" size="15">
+        Телефон <input type="text" name="phone" size="15">
+        <input type="submit" value="Go" name="go">
+    </form>
+    <script>
+        function verify(f) {
+
+            // перевірка прізвища
+            if (f.lname.value.length == 0) {
+                alert('Уведіть прізвище');
+                f.lname.focus();
+                return false;
+            }
+
+            // перевірка телефону
+            if (!f.phone.value.match(/^\s*(\+38)?-?(057)-?(\d{2}|\d{3})-?\d{2}-?\d{2}\s*$/)) {
+                alert('Уведіть правильний телефон');
+                f.phone.focus();
+                return false;
+            }
+            // якщо все ОК
+            return true;
+        }
+    </script>
+</body>
+
+</html>
