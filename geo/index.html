@@ -25,9 +25,13 @@
     <a id="map" target="_blank"></a>
     <iframe id="map_iframe"></iframe>
 
+    <h3>Розрахунок відстані до введеної точки</h3>
+    <label>Широта: <input type="number" id="input-lat" step="any" placeholder="Введіть широту"></label>
+    <label>Довгота: <input type="number" id="input-lon" step="any" placeholder="Введіть довготу"></label>
+    <button onclick="calculateDistance()">Розрахувати відстань</button>
+    <p id="distance-result"></p>
+
     <script>
-        let latitudePoint = 50.02513; // широта
-        let longitudePoint = 36.25694; // довгота
         let x = document.getElementById("pos");
 
         function getLocation() {
@@ -42,6 +46,25 @@
             x.innerHTML = "Широта: " + position.coords.latitude +
                 "<br>Долгота: " + position.coords.longitude;
         }
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+            function deg2rad(deg) {
+                return deg * (Math.PI / 180)
+            }
+
+            let R = 6371; // Radius of the earth in km
+            let dLat = deg2rad(lat2 - lat1);  // deg2rad below
+            let dLon = deg2rad(lon2 - lon1);
+            let a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            let d = R * c; // Distance in km
+            return d;
+        }
+
+
 
         function geoFindMe() {
             let status = document.querySelector("#status");
@@ -72,28 +95,31 @@
                 status.innerHTML = "Неможливо одержати дані геолокації.";
             }
 
-            function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-                let R = 6371; // Radius of the earth in km
-                let dLat = deg2rad(lat2 - lat1);  // deg2rad below
-                let dLon = deg2rad(lon2 - lon1);
-                let a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                let d = R * c; // Distance in km
-                return d;
-            }
-
-            function deg2rad(deg) {
-                return deg * (Math.PI / 180)
-            }
-
             if (!navigator.geolocation) {
                 status.innerHTML = "Геолокація не підтримується вашим браузером.";
             } else {
                 status.innerHTML = "Йде пошук...";
                 navigator.geolocation.getCurrentPosition(success, error);
+            }
+        }
+
+        function calculateDistance() {
+            let inputLat = parseFloat(document.getElementById("input-lat").value);
+            let inputLon = parseFloat(document.getElementById("input-lon").value);
+            let resultElement = document.getElementById("distance-result");
+
+            navigator.geolocation.getCurrentPosition(success);
+
+            function success(position) {
+                let userLatitude = position.coords.latitude;
+                let userLongitude = position.coords.longitude;
+                if (isNaN(inputLat) || isNaN(inputLon)) {
+                    resultElement.innerHTML = "Будь ласка, введіть коректні координати!";
+                    return;
+                }
+
+                let distance = getDistanceFromLatLonInKm(userLatitude, userLongitude, inputLat, inputLon);
+                resultElement.innerHTML = `Відстань до точки: ${distance.toFixed(2)} км`;
             }
         }
 
