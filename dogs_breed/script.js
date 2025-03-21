@@ -1,3 +1,55 @@
+window.onload  = function () {
+  let grounds = ["tan", "pink", "red"];
+  let irises = {
+    1: {
+      ground: "tan",
+      src: "https://js.web-online.net.ua/fl2.jpg"
+    },
+    2: {
+      ground: "pink",
+      src: "https://js.web-online.net.ua/fl1.jpg"
+    },
+    3: {
+      ground: "red",
+      src: "https://plus.unsplash.com/premium_photo-1677178628425-84a64dc416b6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  }
+  function generateGrounds(grounds) {
+    for (let groundName in grounds){
+        let ground = document.createElement("div");
+        ground.id = groundName;
+        ground.style.width = "400px";
+        ground.style.height = "300px";
+        ground.style.background = groundName;
+        ground.style.display = "inline-block";
+        ground.style.border = "none";
+        document.body.appendChild(ground);
+    }
+  }
+
+  function generateIrises(irises){
+    for (let key in irises){
+      let value = irises[key];
+      let image = document.createElement("image");
+      image.id = `iris${key}`;
+      image.class = "iris";
+      image.style.position = "absolute";
+      image.style.left = "120px",
+      image.style.top = `${10+110*(key-1)}px`;
+      image.src = value.src;
+      image.draggable = true;
+      image.dataset.breed = value.ground;
+      document.body.appendChild(image);
+    } 
+  }
+
+  generateGrounds(grounds);
+  generateIrises(irises);
+
+}
+
+
+
 const tan = document.getElementById("tan"); // Поле
 const pink = document.getElementById("pink"); // Поле
 
