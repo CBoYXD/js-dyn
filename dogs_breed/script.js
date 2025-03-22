@@ -15,7 +15,7 @@ window.onload  = function () {
     }
   }
   function generateGrounds(grounds) {
-    for (let groundName in grounds){
+    for (let groundName of grounds){
         let ground = document.createElement("div");
         ground.id = groundName;
         ground.style.width = "400px";
@@ -30,7 +30,7 @@ window.onload  = function () {
   function generateIrises(irises){
     for (let key in irises){
       let value = irises[key];
-      let image = document.createElement("image");
+      let image = document.createElement("img");
       image.id = `iris${key}`;
       image.class = "iris";
       image.style.position = "absolute";
