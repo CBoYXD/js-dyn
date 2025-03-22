@@ -11,7 +11,7 @@
             visibility: hidden;
         }
 
-        #new_image {
+        .new_image {
             visibility: visible;
         }
     </style>
@@ -22,16 +22,21 @@
     <img src="../island/images/map.jpg">
 </body>
     <script>
-        let images = document.getElementsByTagName("img");
+        let images = Array.from(document.getElementsByTagName("img"));
         let expr = /<img[^>]+src="([^"]+\.(jpg|png|gif))"[^>]*>/;
         for (let image of images) {
             let match = image.outerHTML.match(expr);
             console.log(match);
             if (match !== null) {
+                let src = match[1];
+                let link = document.createElement("a");
+                link.href = src;
+                link.target = "_blank";
                 let newImg = document.createElement('img')
-                newImg.src = match[1];
-                newImg.id = "new_image";
-                document.body.appendChild(newImg);
+                newImg.src = src;
+                newImg.className = "new_image";
+                link.appendChild(newImg);
+                image.replaceWith(link);
             }
         }
 
