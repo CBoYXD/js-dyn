@@ -1,4 +1,8 @@
 window.onload  = function () {
+  const showCoords = document.getElementById("showCoords");
+  const state = document.getElementById("state");
+  const checkOrder = document.getElementById("check_order");
+
   let grounds = ["tan", "pink", "red"];
   let irises = {
     1: {
@@ -15,7 +19,9 @@ window.onload  = function () {
     }
   }
   function generateGrounds(grounds) {
-    for (let groundName of grounds){
+    let totalWidth = 0;
+    for (let groundIndex in grounds){
+        let groundName = grounds[groundIndex];
         let ground = document.createElement("div");
         ground.id = groundName;
         ground.style.width = "400px";
@@ -24,7 +30,11 @@ window.onload  = function () {
         ground.style.display = "inline-block";
         ground.style.border = "none";
         document.body.appendChild(ground);
+
+        totalWidth += 400;
     }
+
+    return totalWidth;
   }
 
   function generateIrises(irises){
@@ -35,7 +45,7 @@ window.onload  = function () {
       image.class = "iris";
       image.style.position = "absolute";
       image.style.left = "120px",
-      image.style.top = `${10+110*(key-1)}px`;
+      image.style.top = `${400+110*(key-1)}px`;
       image.src = value.src;
       image.draggable = true;
       image.dataset.breed = value.ground;
@@ -43,9 +53,12 @@ window.onload  = function () {
     } 
   }
 
-  generateGrounds(grounds);
+  let totalWidth = generateGrounds(grounds);
   generateIrises(irises);
 
+  showCoords.style.left = `${totalWidth + 120}px`;
+  state.style.left = `${totalWidth + 120}px`;
+  checkOrder.style.left = `${totalWidth + 120}px`;
 }
 
 
