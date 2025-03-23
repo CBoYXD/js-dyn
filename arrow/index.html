@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        position: relative;
+        height: 2000px; /* Додаємо висоту для прокручування */
+      }
+
+      #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        font-size: 2em;
+        text-decoration: none;
+        background: #000;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#top" id="back-to-top" class="back-to-top">&#8679;</a>
+    <script>
+      let backToTopButton = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTopButton.style.display = "block";
+        } else {
+          backToTopButton.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
