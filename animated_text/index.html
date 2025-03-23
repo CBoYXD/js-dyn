@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="add_text('block', '1234567890')">Додати текст</button>
+    <div id="block"></div>
+
+    <script>
+      function add_text(id, text) {
+        let elem = document.getElementById(id);
+        let pos = 0;
+
+        function getRandomColor() {
+          var letters = "0123456789ABCDEF";
+          var color = "#";
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        }
+
+        function add_letter() {
+            let span = document.createElement("span");
+            span.innerHTML = text[pos];
+            span.style.color = getRandomColor();
+            elem.appendChild(span);
+            pos++;
+            if (pos < text.length) {
+                setTimeout(add_letter, 1000);
+            }
+        }
+        add_letter();
+      }
+    </script>
+  </body>
+</html>
