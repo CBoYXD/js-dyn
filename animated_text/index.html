@@ -6,11 +6,17 @@
     <title>Document</title>
   </head>
   <body>
-    <button onclick="add_text('block', '1234567890')">Додати текст</button>
+    <button onclick="add_text('block')">Додати текст</button>
     <div id="block"></div>
 
     <script>
-      function add_text(id, text) {
+      function add_text(id) {
+        let randomTextArray = [
+            "Hello, world!",
+            "This is a test text.",
+            "Enjoy coding!"
+        ];
+        const text = randomTextArray[Math.floor(Math.random() * randomTextArray.length)];
         let elem = document.getElementById(id);
         let pos = 0;
 
