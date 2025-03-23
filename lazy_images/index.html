@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        body {
+            position: relative;
+            height: 2000px; /* Додаємо висоту для прокручування */
+          }
+    </style>
+  </head>
+  <body>
+    <img src="images/blank.jpg" id="image" data-src="images/fl1.jpg" height="1500"/>
+    <script>
+      let img = document.getElementById("image");
+
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 300) {
+            img.src = img.dataset.src;
+        }
+        if (document.documentElement.scrollTop < 300) {
+            img.src = "images/blank.jpg";
+        }
+      };
+    </script>
+  </body>
+</html>
