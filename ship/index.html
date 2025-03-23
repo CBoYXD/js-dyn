@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #ship {
+        position: absolute;
+        left: 0;
+        top: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="ship" width="400" height="200"></canvas>
+    <button onclick="moveL()">&lt-</button>
+    <button onclick="moveR()">-&gt;</button>
+    <button onclick="stop()">Стоп</button>
+
+    <script>
+      let timer;
+      let left = 0; // начальное значение
+      let context;
+      window.onload = function () {
+        let drawingCanvas = document.getElementById("ship");
+        if (drawingCanvas && drawingCanvas.getContext) {
+          context = drawingCanvas.getContext("2d");
+          drawShip(left);
+        }
+      };
+
+      function drawShip(x) {
+        context.clearRect(0, 0, 400, 200); // очищаем canvas
+        // Рисуем парус
+        context.beginPath();
+        context.fillStyle = "#fc0";
+        context.moveTo(x + 20, 70);
+        context.lineTo(x + 60, 20);
+        context.lineTo(x + 60, 70);
+        context.fill();
+        // Рисуем палубу
+        context.beginPath();
+        context.fillStyle = "#ccf";
+        context.moveTo(x + 0, 70);
+        context.lineTo(x + 30, 100);
+        context.lineTo(x + 70, 100);
+        context.lineTo(x + 100, 70);
+        context.fill();
+        // Рисуем мачту
+        context.beginPath();
+        context.fillStyle = "#a60";
+        context.fillRect(x + 60, 5, 5, 65);
+        // Рисуем флаг
+        context.beginPath();
+        context.fillStyle = "#e49";
+        context.fillRect(x + 40, 5, 20, 10);
+        // Пишем название
+        context.fillStyle = "#00f";
+        context.font = "italic 20px sans-serif";
+        context.textBaseline = "top";
+        context.fillText("SHIP", x + 25, 75);
+      }
+
+      function moveR() {
+        function frame() {
+          if (left < 300) left++;
+          drawShip(left);
+        }
+        timer = setInterval(frame, 10); // рисовать каждые 10мс
+      }
+
+      function moveL() {
+        function frame() {
+          if (left > 0) left--;
+          drawShip(left);
+        }
+        timer = setInterval(frame, 10); // рисовать каждые 10мс
+      }
+
+      function stop() {
+        clearInterval(timer); // завершить анимацию
+      }
+    </script>
+  </body>
+</html>
