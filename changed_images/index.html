@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        position: relative;
+        height: 2000px; /* Додаємо висоту для прокручування */
+      }
+      .hide {
+        opacity: 0;
+      }
+      #din {
+        position: fixed;
+        left: 20px;
+        bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="images/fl1.jpg" alt="" id="din" class="hide" />
+    <script>
+      let img_d = document.getElementById("din");
+
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 200) {
+          if (img_d.classList.contains("hide")) img_d.classList.remove("hide");
+        }
+        if (document.documentElement.scrollTop < 300) {
+          img_d.src = "images/fl1.jpg";
+        }
+        if (document.documentElement.scrollTop > 300) {
+          img_d.src = "images/fl2.jpg";
+        }
+        if (document.documentElement.scrollTop > 600) {
+          img_d.src = "images/wizard.png";
+        }
+      };
+    </script>
+  </body>
+</html>
