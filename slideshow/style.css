@@ -1,0 +1,28 @@
+#wrap {
+    width: 520px;
+    height: 360px;
+    overflow: hidden;
+}
+#slider {
+    position: relative;
+    left: 0;
+    width: 520px;
+    height: 360px;
+    object-fit: cover;
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+.mini {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.fade {
+    opacity: 0 !important;
+}
+
+.go {
+    left: 520;
+}
