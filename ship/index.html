@@ -64,6 +64,7 @@
       }
 
       function moveR() {
+        stop();
         function frame() {
           if (left < 300) left++;
           drawShip(left);
@@ -72,6 +73,7 @@
       }
 
       function moveL() {
+        stop();
         function frame() {
           if (left > 0) left--;
           drawShip(left);

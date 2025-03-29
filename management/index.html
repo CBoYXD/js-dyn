@@ -32,6 +32,7 @@
       let timer;
       let left = 0; // начальное значение
       function moveR(id) {
+        stop();
         let elem = document.getElementById(id);
         function frame() {
           // функция для отрисовки
@@ -42,6 +43,7 @@
       }
 
       function moveL(id){
+        stop();
         let elem = document.getElementById(id);
         function frame() {
           // функция для отрисовки
