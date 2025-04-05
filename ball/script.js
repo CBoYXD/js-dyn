@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvas");
 // context = canvas.getContext("2d");
 // let width = canvas.width;
 // let height = canvas.height;
-
+let intervalId;
 const n = 10;
 let colors = ["Red", "Orange", "Yellow", "Green","Blue", "Purple"];
 
@@ -72,11 +72,12 @@ class BallsGame {
   }
 
   start() {
-    setInterval(this.go.bind(this), 30);
+    intervalId = setInterval(this.go.bind(this), 30);
   }
 }
 
 function generateBalls(){
+    clearInterval(intervalId);
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const n = parseInt(document.getElementById('ballCount').value)
