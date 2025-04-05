@@ -76,20 +76,18 @@ class BallsGame {
   }
 }
 
-//drawBorder();
-
-//draw();
-
-//const ball = new Ball(context);
-
-const balls = [];
-for (let i = 0; i < n; i++) {
-  balls[i] = new Ball(canvas);
+function generateBalls(){
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const n = parseInt(document.getElementById('ballCount').value)
+    const balls = [];
+    for (let i = 0; i < n; i++) {
+      balls[i] = new Ball(canvas);
+    }
+    
+    
+    let ballsGame = new BallsGame(balls, canvas);
+    ballsGame.drawBorder();
+    
+    ballsGame.start();
 }
-
-//start();
-
-let ballsGame = new BallsGame(balls, canvas);
-ballsGame.drawBorder();
-
-ballsGame.start();
