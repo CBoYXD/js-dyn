@@ -4,6 +4,7 @@ const canvas = document.getElementById("canvas");
 // let height = canvas.height;
 
 const n = 10;
+let colors = ["Red", "Orange", "Yellow", "Green","Blue", "Purple"];
 
 class Ball {
   constructor(canvas, x = 100, y = 100) {
@@ -14,7 +15,7 @@ class Ball {
     this.height = canvas.height;
     this.xSpeed = Math.floor(Math.random() * 10);
     this.ySpeed = Math.floor(Math.random() * 10);
-    this.color = "blue";
+    this.color = colors[Math.floor(Math.random() * colors.length)];
   }
 
   circle(x, y, radius = 5) {
