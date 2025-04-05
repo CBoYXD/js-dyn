@@ -28,3 +28,5 @@
 - [target - 6.3 target](target/README.md)
 - [url - 6.2 URL](url/README.md)
 - [zoom - 7.8 Zoom](zoom/README.md)
+- [ball - 4.6 Кульки](ball/README.md)
+- [snake - 4.8 Гра «Змійка»](snake/README.md)
