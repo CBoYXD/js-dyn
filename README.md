@@ -30,3 +30,4 @@
 - [zoom - 7.8 Zoom](zoom/README.md)
 - [ball - 4.6 Кульки](ball/README.md)
 - [snake - 4.8 Гра «Змійка»](snake/README.md)
+- [modules - 2.2 Модулі](modules/README.md)
